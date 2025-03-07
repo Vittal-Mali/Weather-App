@@ -8,18 +8,28 @@ const wind_speed = document.getElementById("wind-speed");
 const notFound = document.querySelector(".location-not-found");
 const weather_body = document.querySelector(".weather-body");
 const body = document.querySelector("body");
-const video = document.querySelector("video")
+const video = document.querySelector(".background-vid");
+const container = document.querySelector(".container");
 
-searchBtn.addEventListener("click", () => {
+
+function handlerSrh(){
     if(inputBox.value==""){
         alert("Please enter city first");
         return;
     }
     
     checkWeather(inputBox.value);
+    container.style.backgroundColor="#fff";
     video.style.display="none";
-});
+}
 
+searchBtn.addEventListener("click",handlerSrh);
+
+inputBox.addEventListener("keypress",(event)=>{
+    if(event.key=="Enter"){
+        handlerSrh();
+    }
+});
 
 async function checkWeather(city){
     const api_key = "dff54037d0d74612f63dcc00cc02dca9";
